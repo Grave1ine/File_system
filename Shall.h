@@ -1,6 +1,7 @@
 #ifndef SHALL_H
 #define SHALL_H
 
+#include <FileSystem.hpp>
 #include <string>
 
 class Shall
@@ -15,9 +16,11 @@ private:
 
     std::string name;
     size_t size_file;
+    Filesystem fileSystem;
 
-    void help();
-    void rename();
+    static void help();
+    static void rename(const std::string &, const std::string &);
+
 
 };
 
