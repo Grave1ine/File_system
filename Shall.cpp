@@ -11,7 +11,7 @@
 
 Shall::Shall(const std::string & name, size_t size_file):name(name), size_file(size_file)
 {
-    std::cout << "Shell constuctor  name : " << name << "\n" << "size : " << size_file << std::endl;
+    std::cout << "Shell constuctor name : " << name << "\n" << "size : " << size_file << std::endl;
     Shall::Get();
 }
 
@@ -64,8 +64,12 @@ void Shall::Start()
         }
         else if(words_consol == "read_file")
         {
-            File file(words_consol_v[1]);
+            File file(words_consol_v[0]);
             fileSystem.Read(file);
+            std::vector<uint8_t> transit;
+            file.Read(transit);
+            std::ofstream writeStream(words_consol_v[1]);
+            writeStream.write(reinterpret_cast<const char *>(transit.data()), transit.size());
         }
         else if(words_consol == "rename")
         {
